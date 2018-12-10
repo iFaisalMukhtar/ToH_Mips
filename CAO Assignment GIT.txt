@@ -9,6 +9,53 @@ Move:
 To:
     .ascii      " to "
     .globl main
+ .text  
+main:
+    li $v0, 4 			
+    la $a0, Author
+    syscall
 
+    li  $v0, 4 			
+    la  $a0, Prompt
+    syscall
+
+    li $v0, 5
+    syscall
+    add $a0, $v0, $zero 	
+    
+    addi $a1, $zero, 1		
+    addi $a2, $zero, 3		
+    addi $a3, $zero, 2	
+    jal hanoi_towers
+    
+    li $v0, 10 		
+    syscall
+    
+hanoi_towers:
+    addi $t0, $a0, 0		
+    addi $t1, $zero, 1
+    bne $a0, $t1, else
+    li $v0, 4			
+    la $a0, Move
+    syscall
+    li $v0, 1 			
+    move $a0, $a1
+    syscall
+    li $v0, 4			
+    la $a0, To
+    syscall
+    li $v0, 1 			
+    move $a0, $a2
+    syscall
+    addi $a0, $t0, 0		
+    jr $ra
+    
+else:
+    	addi $sp, $sp, -20
+    	sw $ra, 16($sp)
+    	sw $a3, 12($sp)		
+    	sw $a2, 8($sp)		
+    	sw $a1, 4($sp)		
+	
 
    
