@@ -1,0 +1,14 @@
+  .data
+Author:
+    .ascii      "Towers of Hanoi\n"
+    .asciiz     "Author: Austin Corso\n"
+Prompt:  
+    .asciiz     "\nEnter the number of disks: "
+Move:
+    .asciiz      "\nMove disk from "
+To:
+    .ascii      " to "
+    .globl main
+
+
+   
